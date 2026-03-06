@@ -49,7 +49,7 @@ export default function VoiceSelector({ language, voiceId, setVoiceId }: VoiceSe
                                 <optgroup key={gender} label={gender === "Female" ? "👩 Nữ" : "👨 Nam"}>
                                     {items.map((v) => (
                                         <option key={v.id} value={v.id}>
-                                            {v.name}
+                                            {v.name.replace(/Microsoft\s*/i, "").replace(/\s*Online\s*\(Natural.*?\)/i, "")}
                                         </option>
                                     ))}
                                 </optgroup>

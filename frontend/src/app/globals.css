@@ -236,6 +236,8 @@ body {
 }
 
 .voice-selector__select {
+  width: 100%;
+  max-width: 100%;
   padding: 0.65rem 0.75rem;
   font-size: 0.9rem;
   font-family: inherit;
@@ -246,6 +248,9 @@ body {
   outline: none;
   cursor: pointer;
   transition: border-color var(--transition);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .voice-selector__select:focus {

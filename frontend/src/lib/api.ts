@@ -1,4 +1,9 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+function getApiUrl(): string {
+    if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+    if (typeof window !== "undefined") return `http://${window.location.hostname}:7001`;
+    return "http://localhost:7001";
+}
+const API_URL = getApiUrl();
 
 export interface TTSRequest {
     text: string;

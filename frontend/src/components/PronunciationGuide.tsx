@@ -13,7 +13,7 @@ interface PronunciationData {
     language: string;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || (typeof window !== "undefined" ? `http://${window.location.hostname}:7001` : "http://localhost:7001");
 
 export default function PronunciationGuide({ text, language }: PronunciationGuideProps) {
     const [data, setData] = useState<PronunciationData | null>(null);

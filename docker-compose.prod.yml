@@ -1,0 +1,22 @@
+services:
+  backend:
+    image: 731105996044.dkr.ecr.ap-northeast-1.amazonaws.com/genki:voicesensei-backend-202603061101
+    ports:
+      - "7001:8000"
+    environment:
+      - SUPABASE_URL=https://rcebhmfetjpmmicfafxr.supabase.co
+      - SUPABASE_KEY=sb_publishable_pqPhz8eivmHF5WjLM-z8Vg_sg35LFR-
+    restart: always
+    volumes:
+      - audio-data:/app/audio_files
+
+  frontend:
+    image: 731105996044.dkr.ecr.ap-northeast-1.amazonaws.com/genki:voicesensei-frontend-202603061101
+    ports:
+      - "3001:3000"
+    restart: always
+    depends_on:
+      - backend
+
+volumes:
+  audio-data:

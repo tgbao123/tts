@@ -4,24 +4,22 @@ services:
     ports:
       - "8000:8000"
     env_file: .env
+    restart: always
     volumes:
-      - ./backend:/app
-      - backend_audio:/app/audio_files
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      - audio-data:/app/audio_files
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://backend:8000}
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-}
+        NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY: ${NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY:-}
     ports:
       - "3000:3000"
-    env_file: .env
-    volumes:
-      - ./frontend/src:/app/src
-    command: npm run dev
-
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+    restart: always
+    depends_on:
+      - backend
 
 volumes:
-  backend_audio:
+  audio-data:

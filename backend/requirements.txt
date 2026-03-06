@@ -1,0 +1,12 @@
+# Backend
+fastapi==0.115.*
+uvicorn[standard]==0.34.*
+edge-tts==7.*
+supabase==2.*
+python-dotenv==1.*
+pydantic-settings==2.*
+aiofiles==24.*
+python-multipart==0.0.*
+httpx==0.28.*
+eng-to-ipa
+pykakasi
